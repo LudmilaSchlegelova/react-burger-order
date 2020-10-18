@@ -28,13 +28,20 @@ const Wrapper = styled.div`
 `
 
 const Burger = props => {
+	const transformedIngredients = []
+	Object.keys(props.ingredients).map((typeIngredient, i) => {
+		const countIngredient = props.ingredients[typeIngredient]
+		for (let i = 0; i < countIngredient; i++) {
+			transformedIngredients.push(
+				<BurgerIngredient key={typeIngredient + i} type={typeIngredient} />
+			)
+		}
+	})
+	console.log(transformedIngredients)
 	return (
 		<Wrapper>
 			<BurgerIngredient type="bread-top" />
-			<BurgerIngredient type="cheese" />
-			<BurgerIngredient type="bacon" />
-			<BurgerIngredient type="salad" />
-			<BurgerIngredient type="meat" />
+			{transformedIngredients}
 			<BurgerIngredient type="bread-bottom" />
 		</Wrapper>
 	)

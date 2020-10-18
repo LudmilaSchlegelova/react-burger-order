@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
+//DU preskumat a pohrat sa so stylovanim, after before pri semiackach
 const BreadBottom = styled.div`
 	height: 13%;
 	width: 80%;
