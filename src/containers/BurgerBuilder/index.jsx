@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Auth from '../../hoc/Auth'
 import Burger from '../../components/Burger'
+import BuildControls from '../../components/Burger/BuildControls'
 
 class BurgerBuilder extends Component {
 	//stary zapis
@@ -15,7 +16,7 @@ class BurgerBuilder extends Component {
 		return (
 			<Auth>
 				<Burger ingredients={this.state.ingredients} />
-				<div>BuildControls</div>
+				<BuildControls />
 			</Auth>
 		)
 	}
