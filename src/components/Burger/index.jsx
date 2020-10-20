@@ -28,7 +28,7 @@ const Wrapper = styled.div`
 `
 
 const Burger = props => {
-	const transformedIngredients = []
+	let transformedIngredients = []
 	Object.keys(props.ingredients).map((typeIngredient, i) => {
 		const countIngredient = props.ingredients[typeIngredient]
 		for (let i = 0; i < countIngredient; i++) {
@@ -37,7 +37,9 @@ const Burger = props => {
 			)
 		}
 	})
-	console.log(transformedIngredients)
+	if (transformedIngredients.length === 0) {
+		transformedIngredients = <p>Please start adding ingredients!</p>
+	}
 	return (
 		<Wrapper>
 			<BurgerIngredient type="bread-top" />
