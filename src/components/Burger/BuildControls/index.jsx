@@ -13,6 +13,14 @@ const Wrapper = styled.div`
 	padding: 10px 0;
 `
 
+const Title = styled.p`
+	padding: 10px 0;
+`
+
+const Strong = styled.strong`
+	font-weight: bold;
+`
+
 const controls = [
 	{ label: 'Salad', type: 'salad' },
 	{ label: 'Bacon', type: 'bacon' },
@@ -24,6 +32,9 @@ const BuildControls = props => {
 	console.log(props.disabled)
 	return (
 		<Wrapper>
+			<Title>
+				Current Titlerice: <Strong>{props.price.toFixed(2)}</Strong>
+			</Title>
 			{controls.map(item => (
 				<BuildControl
 					label={item.label}
