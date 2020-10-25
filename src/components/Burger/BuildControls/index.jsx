@@ -21,6 +21,7 @@ const controls = [
 ]
 
 const BuildControls = props => {
+	console.log(props.disabled)
 	return (
 		<Wrapper>
 			{controls.map(item => (
@@ -29,6 +30,7 @@ const BuildControls = props => {
 					key={item.label}
 					deletedIngredients={() => props.deletedIngredients(item.type)}
 					addedIngredients={() => props.addedIngredients(item.type)}
+					disabled={props.disabled[item.type]}
 				/>
 			))}
 		</Wrapper>

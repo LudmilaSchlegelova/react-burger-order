@@ -37,7 +37,9 @@ const BuildControl = props => {
 	return (
 		<Wrapper>
 			<Label>{props.label}</Label>
-			<ButtonLess onClick={props.deletedIngredients}>Less</ButtonLess>
+			<ButtonLess disabled={props.disabled} onClick={props.deletedIngredients}>
+				Less
+			</ButtonLess>
 			<ButtonMore onClick={props.addedIngredients}>More</ButtonMore>
 		</Wrapper>
 	)
