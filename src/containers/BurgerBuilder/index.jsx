@@ -15,6 +15,15 @@ class BurgerBuilder extends Component {
 	state = {
 		ingredients: { salad: 0, bacon: 0, cheese: 0, meat: 0 },
 		totalPrice: 4,
+		purchasable: false,
+	}
+
+	updatePurchaseState = ingredients => {
+		const sum = Object.keys(ingredients)
+			.map(item => ingredients[item])
+			.reduce((sum, el) => sum + el, 0)
+		this.setState({ purchasable: sum > 0 })
+		console.log(sum)
 	}
 
 	addIngredientHandler = type => {
@@ -26,6 +35,7 @@ class BurgerBuilder extends Component {
 		const oldPrice = this.state.totalPrice
 		const newPrice = oldPrice + priceAddition
 		this.setState({ ingredients: updatedIngredients, totalPrice: newPrice })
+		this.updatePurchaseState(updatedIngredients)
 		//ak kliknem na tlacitko more tak si vezmem aktualny stav a pripocitam plus 1
 	}
 
@@ -41,6 +51,8 @@ class BurgerBuilder extends Component {
 		const oldPrice = this.state.totalPrice
 		const newPrice = oldPrice - priceAddition
 		this.setState({ ingredients: updatedIngredients, totalPrice: newPrice })
+		this.updatePurchaseState(updatedIngredients)
+
 		// odpocitat z aktualneho stavu 1 polozku.
 	}
 
@@ -54,6 +66,7 @@ class BurgerBuilder extends Component {
 			<Auth>
 				<Burger ingredients={this.state.ingredients} />
 				<BuildControls
+					purchasable={this.state.purchasable}
 					price={this.state.totalPrice}
 					disabled={disabledInfo}
 					addedIngredients={this.addIngredientHandler}
