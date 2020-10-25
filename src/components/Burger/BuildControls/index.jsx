@@ -24,7 +24,12 @@ const BuildControls = props => {
 	return (
 		<Wrapper>
 			{controls.map(item => (
-				<BuildControl label={item.label} key={item.label} />
+				<BuildControl
+					label={item.label}
+					key={item.label}
+					deletedIngredients={() => props.deletedIngredients(item.type)}
+					addedIngredients={() => props.addedIngredients(item.type)}
+				/>
 			))}
 		</Wrapper>
 	)

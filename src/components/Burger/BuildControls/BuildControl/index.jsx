@@ -37,10 +37,12 @@ const BuildControl = props => {
 	return (
 		<Wrapper>
 			<Label>{props.label}</Label>
-			<ButtonLess>Less</ButtonLess>
-			<ButtonMore>More</ButtonMore>
+			<ButtonLess onClick={props.deletedIngredients}>Less</ButtonLess>
+			<ButtonMore onClick={props.addedIngredients}>More</ButtonMore>
 		</Wrapper>
 	)
 }
 
 export default BuildControl
+
+//tu volam funkcie, cez onClick
