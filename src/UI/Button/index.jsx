@@ -12,8 +12,8 @@ const Wrapper = styled.button`
 	border-radius: 5px;
 	outline: 0;
 	background-color: transparent;
-	color: ${({ type }) => type === 'success' && 'green'};
-	color: ${({ type }) => type === 'error' && 'red'};
+	color: ${({ btnType }) => btnType === 'success' && 'green'};
+	color: ${({ btnType }) => btnType === 'error' && 'red'};
 
 	&:disabled {
 		cursor: default;
@@ -37,6 +37,7 @@ const Button = props => {
 	return (
 		<Wrapper
 			disabled={props.disabled}
+			btnType={props.btnType}
 			type={props.type}
 			onClick={props.onClick}
 			className={props.className}>
