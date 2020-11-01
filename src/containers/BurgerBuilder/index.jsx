@@ -59,8 +59,16 @@ class BurgerBuilder extends Component {
 		// odpocitat z aktualneho stavu 1 polozku.
 	}
 
-	purchasehandler = () => {
+	purchaseHandler = () => {
 		this.setState({ purchasing: true })
+	}
+
+	purchaseCancelHandler = () => {
+		this.setState({ purchasing: false })
+	}
+
+	purchaseContinueHandler = () => {
+		alert('You continue!')
 	}
 
 	render() {
@@ -71,15 +79,19 @@ class BurgerBuilder extends Component {
 		}
 		return (
 			<Auth>
-				<Modal show={this.state.purchasing}>
+				<Modal
+					modalClosed={this.purchaseCancelHandler}
+					show={this.state.purchasing}>
 					<OrderSummary
+						purchaseCancelled={this.purchaseCancelHandler}
+						purchaseContinue={this.purchaseContinueHandler}
 						price={this.state.totalPrice}
 						ingredients={this.state.ingredients}
 					/>
 				</Modal>
 				<Burger ingredients={this.state.ingredients} />
 				<BuildControls
-					ordered={this.purchasehandler}
+					ordered={this.purchaseHandler}
 					purchasable={this.state.purchasable}
 					price={this.state.totalPrice}
 					disabled={disabledInfo}

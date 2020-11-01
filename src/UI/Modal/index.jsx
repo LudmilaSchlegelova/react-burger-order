@@ -1,6 +1,7 @@
 import React from 'react'
-import styled, { css } from 'styled-components'
-import BurgerBuilder from '../../containers/BurgerBuilder'
+import styled from 'styled-components'
+import Auth from '../../hoc/Auth'
+import Backdrop from '../../UI/Backdrop'
 
 const Wrapper = styled.div`
 	position: fixed;
@@ -13,19 +14,9 @@ const Wrapper = styled.div`
 	left: 15%;
 	top: 30%;
 	box-sizing: border-box;
-	transition: all 1s ease-out;
-	${({ show }) =>
-		show === false
-			? css`
-					transform: trasnlateY(0);
-					opacity: 0;
-					z-index: -1;
-			  `
-			: css`
-					transform: trasnlateY(-100vh);
-					opacity: 1;
-					z-index: 1;
-			  `};
+	transition: all 0.3s ease-out;
+	transform: translateY(-100vh);
+	transform: ${({ show }) => show && 'translateY(0)'};
 
 	@media (min-width: 600px) {
 		width: 500px;
@@ -33,9 +24,12 @@ const Wrapper = styled.div`
 	}
 `
 
-const Modal = props => {
-	return <Wrapper show={props.show}>{props.children}</Wrapper>
-}
+const Modal = props => (
+	<Auth>
+		<Backdrop clicked={props.modalClosed} show={props.show} />
+		<Wrapper show={props.show}>{props.children}</Wrapper>
+	</Auth>
+)
 
 export default Modal
 

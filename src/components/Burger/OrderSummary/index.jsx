@@ -70,8 +70,12 @@ const OrderSummary = props => {
 			</TotalPrice>
 			<Description>Continue to checkout?</Description>
 			<ButtonWrapper>
-				<Btn btnType="error">Cancel</Btn>
-				<Btn btnType="success">Continue</Btn>
+				<Btn onClick={props.purchaseCancelled} btnType="error">
+					Cancel
+				</Btn>
+				<Btn onClick={props.purchaseContinue} btnType="success">
+					Continue
+				</Btn>
 			</ButtonWrapper>
 		</Auth>
 	)
