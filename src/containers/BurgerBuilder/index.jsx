@@ -18,6 +18,7 @@ class BurgerBuilder extends Component {
 		ingredients: { salad: 0, bacon: 0, cheese: 0, meat: 0 },
 		totalPrice: 4,
 		purchasable: false,
+		purchasing: false,
 	}
 
 	updatePurchaseState = ingredients => {
@@ -58,6 +59,10 @@ class BurgerBuilder extends Component {
 		// odpocitat z aktualneho stavu 1 polozku.
 	}
 
+	purchasehandler = () => {
+		this.setState({ purchasing: true })
+	}
+
 	render() {
 		console.log(this.state)
 		const disabledInfo = { ...this.state.ingredients }
@@ -66,11 +71,15 @@ class BurgerBuilder extends Component {
 		}
 		return (
 			<Auth>
-				<Modal>
-					<OrderSummary ingredients={this.state.ingredients} />
+				<Modal show={this.state.purchasing}>
+					<OrderSummary
+						price={this.state.totalPrice}
+						ingredients={this.state.ingredients}
+					/>
 				</Modal>
 				<Burger ingredients={this.state.ingredients} />
 				<BuildControls
+					ordered={this.purchasehandler}
 					purchasable={this.state.purchasable}
 					price={this.state.totalPrice}
 					disabled={disabledInfo}
@@ -95,3 +104,8 @@ export default BurgerBuilder
 //nad return console.log(this.state.ingredients).. urobit pre salat, ak budem vediet tak pre vsetko.
 
 //tieto funkcie preposielam do BuildControl
+
+//D.U.
+
+//vytvorit novy stav purchasing, defaltne je false.
+// pod remove handler vytvorit funkciu purchasehandler(), prepisuje purchasing na true. Tato funkcia sa pouzije ako onClick na tlacitku order now. preposielam cez build controls do komponenty button, atribut bude ordered. Modalu vytvorim atribut show, show: this.state.purchasing. ak je false tak sa robi animacia: transform: translateY(0), ak je false trasnlateY(-100vh), ak je true opacity: 1, ak false opacity:0

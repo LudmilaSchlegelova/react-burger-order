@@ -10,6 +10,7 @@ const Wrapper = styled.button`
 	border: 1px solid orange;
 	cursor: pointer;
 	border-radius: 5px;
+	text-transform: uppercase;
 	outline: 0;
 	background-color: transparent;
 	color: ${({ btnType }) => btnType === 'success' && 'green'};

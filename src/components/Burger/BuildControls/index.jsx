@@ -79,10 +79,11 @@ const BuildControls = props => {
 	return (
 		<Wrapper>
 			<Title>
-				Current Titlerice: <Strong>{props.price.toFixed(2)}</Strong>
+				Current Titleprice: <Strong>{props.price.toFixed(2)}</Strong>
 			</Title>
 			{controls.map(item => (
 				<BuildControl
+					price={props.price}
 					label={item.label}
 					key={item.label}
 					deletedIngredients={() => props.deletedIngredients(item.type)}
@@ -90,7 +91,9 @@ const BuildControls = props => {
 					disabled={props.disabled[item.type]}
 				/>
 			))}
-			<Button disabled={!props.purchasable}>Order now</Button>
+			<Button onClick={props.ordered} disabled={!props.purchasable}>
+				Order now
+			</Button>
 		</Wrapper>
 	)
 }

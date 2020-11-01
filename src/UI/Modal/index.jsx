@@ -1,5 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+import BurgerBuilder from '../../containers/BurgerBuilder'
 
 const Wrapper = styled.div`
 	position: fixed;
@@ -12,7 +13,19 @@ const Wrapper = styled.div`
 	left: 15%;
 	top: 30%;
 	box-sizing: border-box;
-	transition: all 0.3s ease-out;
+	transition: all 1s ease-out;
+	${({ show }) =>
+		show === false
+			? css`
+					transform: trasnlateY(0);
+					opacity: 0;
+					z-index: -1;
+			  `
+			: css`
+					transform: trasnlateY(-100vh);
+					opacity: 1;
+					z-index: 1;
+			  `};
 
 	@media (min-width: 600px) {
 		width: 500px;
@@ -21,7 +34,9 @@ const Wrapper = styled.div`
 `
 
 const Modal = props => {
-	return <Wrapper>{props.children}</Wrapper>
+	return <Wrapper show={props.show}>{props.children}</Wrapper>
 }
 
 export default Modal
+
+// Modalu vytvorim atribut show, show: this.state.purchasing. ak je false tak sa robi animacia: transform: translateY(0), ak je false trasnlateY(-100vh), ak je true opacity: 1, ak false opacity:0
